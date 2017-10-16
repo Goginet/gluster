@@ -1,0 +1,19 @@
+# Author: Georgy Shapchits <gogi.soft.gm@gmail.com>
+
+version: "2"
+
+services:
+  master:
+    image: goginet/openmpi
+    fip: 209.177.93.85
+    ports:
+      - 22
+    links:
+      - slave-1
+      - slave-2
+
+  slave-1:
+    image: goginet/openmpi
+
+  slave-2:
+    image: goginet/openmpi
