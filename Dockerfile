@@ -9,7 +9,6 @@ ENV BIN_FILE ${HOME}/bin/a.out
 WORKDIR ${HOME}
 
 ADD configs configs
-ADD src src
 ADD ssh .ssh
 ADD scripts scripts
 
@@ -19,9 +18,9 @@ RUN apt update -y && \
     mkdir -p .ssh && \
     mkdir -p $(dirname ${BIN_FILE}}) && \
     chmod -R 600 .ssh/* && \
-    mpicc ${SRC_FILE} -o ${BIN_FILE} && \
     chmod +x scripts/* && \
     cp scripts/run.sh /usr/bin/run && \
-    cp scripts/start.sh /usr/bin/start
+    cp scripts/start.sh /usr/bin/start && \
+    cp scripts/update.sh /usr/bin/update
 
 CMD ["start"]

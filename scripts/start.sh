@@ -1,18 +1,19 @@
 #!/bin/bash
 # Author: Georgy Shapchits <gogi.soft.gm@gmail.com>
 
-master=$(hostname -i)
-slave1=$(cat /etc/hosts | grep -m1 "slave-1" | grep -oE "172.[0-9]*.[0-9]*.[0-9]*.")
-slave2=$(cat /etc/hosts | grep -m1 "slave-2" | grep -oE "172.[0-9]*.[0-9]*.[0-9]*.")
+NODES=8
 
+master=$(hostname -i)
 echo ${master} master >> /etc/hosts
 
-ssh slave-1 "echo ${master} master >> /etc/hosts"
-ssh slave-1 "echo ${slave1} slave-1 >> /etc/hosts"
-ssh slave-1 "echo ${slave2} slave-2 >> /etc/hosts"
-
-ssh slave-2 "echo ${master} master >> /etc/hosts"
-ssh slave-2 "echo ${slave1} slave-1 >> /etc/hosts"
-ssh slave-2 "echo ${slave2} slave-2 >> /etc/hosts"
+for i in $(seq 1 ${NODES})
+do
+    slave=$(cat /etc/hosts | grep -m1 "slave-${i}" | grep -oE "172.[0-9]*.[0-9]*.[0-9]*.")
+    ssh slave-${i} "echo ${master} master >> /etc/hosts"
+    for j in $(seq 1 ${NODES})
+    do
+        ssh slave-${j} "echo ${slave} slave-${i} >> /etc/hosts"
+    done
+done
 
 /usr/sbin/sshd -D

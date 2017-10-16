@@ -4,16 +4,42 @@ version: "2"
 
 services:
   master:
-    image: goginet/openmpi
+    image: goginet/gluster
     fip: 209.177.93.85
     ports:
       - 22
+    environment:
+      NODES: 8
     links:
       - slave-1
       - slave-2
+      - slave-3
+      - slave-4
+      - slave-5
+      - slave-6
+      - slave-7
+      - slave-8
 
   slave-1:
-    image: goginet/openmpi
+    image: goginet/gluster
 
   slave-2:
-    image: goginet/openmpi
+    image: goginet/gluster
+
+  slave-3:
+    image: goginet/gluster
+
+  slave-4:
+    image: goginet/gluster
+
+  slave-5:
+    image: goginet/gluster
+
+  slave-6:
+    image: goginet/gluster
+
+  slave-7:
+    image: goginet/gluster
+
+  slave-8:
+    image: goginet/gluster

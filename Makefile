@@ -6,24 +6,16 @@
 #
 # Copyright (C) 2016 Synesis LLC. All rights reserved.
 AUTH=goginet
-NAME=openmpi
+NAME=gluster
 TAG=${AUTH}/${NAME}
 
-all: build up run
-
 up:
-	docker-compose up -d
+	hyper compose up -d
 
 down:
-	docker-compose down
+	hyper compose down
 
 build:
 	docker build -t $(TAG) .
-
-run:
-	docker-compose exec master run
-
-connect:
-	docker-compose exec master bash
-
-reload: down all
+	docker push $(TAG)
+	hyper pull $(TAG)
