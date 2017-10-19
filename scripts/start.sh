@@ -1,7 +1,7 @@
 #!/bin/bash
 # Author: Georgy Shapchits <gogi.soft.gm@gmail.com>
 
-NODES=8
+NODES=3
 
 master=$(hostname -i)
 echo ${master} master >> /etc/hosts

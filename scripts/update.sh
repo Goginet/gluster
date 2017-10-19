@@ -1,7 +1,7 @@
 #!/bin/bash
 # Author: Georgy Shapchits <gogi.soft.gm@gmail.com>
 
-NODES=8
+NODES=3
 
 APP=/root/a.out
 BIN_FILE=/root/bin/a.out
