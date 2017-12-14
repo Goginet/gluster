@@ -1,10 +1,6 @@
 
-# Kipod Infrastructure Platform
-#
-# Authors:
-#   Georgy Shapchits <georgy.schapchits@synesis.ru>
-#
-# Copyright (C) 2016 Synesis LLC. All rights reserved.
+# Author: Georgy Shapchits <georgy.schapchits@synesis.ru>
+
 AUTH=goginet
 NAME=gluster
 TAG=${AUTH}/${NAME}
